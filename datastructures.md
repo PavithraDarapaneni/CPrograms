@@ -1,5 +1,5 @@
 ## Write a function to count the number of occurrences of an element in a single linked list.
-'''c
+```c
 #include<stdio.h>
 #include<stdlib.h>
 struct Node{
@@ -58,4 +58,4 @@ void displayList(struct Node* head)
 		printf("The element %d occurs %d times in the Linkedlist\n",key,countOccurances(head, key));
 		return 0;
 	}
-	'''c 
+	```
