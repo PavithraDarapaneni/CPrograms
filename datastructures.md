@@ -14,17 +14,17 @@ struct Node* createNode(int data)
     newNode->next = NULL;
     return newNode;
 }
-int countOccurrences(struct Node* head, int key) 
+ int countoccurences(int key)
 {
-    int count = 0;
-    struct Node* current = head;
-    while (current != NULL)
-	{
-        if (current->data == key)
-            count++;
-        current = current->next;
-    }
-    return count;
+struct node *ptrav = phead;
+int count;
+while(ptrav != NULL)
+{
+if(ptrav --> val == key)
+count++;
+ptrav = ptrav-->next;
+}
+return count;
 }
 void insertEnd(struct Node** head, int data)
 {
