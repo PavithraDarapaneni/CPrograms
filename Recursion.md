@@ -1,205 +1,175 @@
-
-## 1. Write a program in C to count the total number of alphabets, digits and special characters in a String.
+## 1.Factorial of a number using recursion.
 ```c
 #include<stdio.h>
-#include<string.h>
-void counting(char s[]){
-        int alph=0,digits=0,symb=0;
-        for(int i=0;s[i]!='\0';i++){
-                if((s[i]>='a' && s[i]<='z')||(s[i]>='A' && s[i]<='Z'))
-                        alph++;
-                else if(s[i]>='0' && s[i]<='9')
-                        digits++;
-                else
-                        symb++;
-        }
-        printf("No of Alphabets=%d\n",alph);
-        printf("No of Digits=%d\n",digits);
-        printf("No of Symbols=%d\n",symb);
+int factorial(int x){
+        int fact;
+        if(x==1)
+                return 1;
+        fact=x*factorial(x-1);
+        return fact;
 }
 int main(){
-        char str[100];
-        fgets(str,sizeof(str),stdin);
-        if(str[strlen(str)-1]=='\n')
-                str[strlen(str)-1]='\0';
-        void (*ptr)(char [])=&counting;
-        ptr(str);
+        int n,f;
+        printf("Enter the number:");
+        scanf("%d",&n);
+        f=factorial(n);
+        printf("factorial of %d = %d",n,f);
 }
 ```
- ## 2. Write a C program to check the String is Pangram or not.
+## 2.Fibonacci series of a number using recursion.
 ```c
 #include<stdio.h>
-#include<string.h>
-void pangram(int ptr){
-        if(ptr)
-                printf("string is pangram");
-        else
-                printf("String is not pangram");
-
+int fibonacci(int x){
+        int f;
+        if(x<0){
+                printf("Invalid input");
+                return -1;
+        }
+        if(x==0)
+                return 0;
+        if(x==1)
+                return 1;
+        f=fibonacci(x-1)+fibonacci(x-2);
+        return f;
 }
 int main(){
-        char str[100];
-        fgets(str,sizeof(str),stdin);
-        if(str[strlen(str)-1]=='\n')
-             str[strlen(str)-1]='\0';
-        for(int i=0;str[i]!='\0';i++){
-                if(str[i]>='A' && str[i]<='Z')
-                        str[i]=str[i]+32;
+        int n,f;
+        printf("Enter the number:");
+        scanf("%d",&n);
+        for(int i=0;i<n;i++){
+                printf("%d ",fibonacci(i));
         }
-        void (*ptr)(int)=&pangram;
-        for(char ch='a';ch<='z';ch++){
-                int found=0;
-                for(int i=0;str[i]!='\0';i++){
-                        if(str[i]==ch){
-                                found=1;
-                                break;
-                        }
-                }
-                if(!found){
-                        ptr(0);
-                        return 0;
-                }
-        }
-        ptr(1);
         return 0;
 }
 ```
-## 3. Write a C program to sort a string array in ascending order.
+## 3.Finding prime number using recursion.
 ```c
 #include<stdio.h>
-#include<string.h>
-void sorting(char s[]){
-        int k=0;
-        for(int i=0;s[i]!='\0';i++){
-                if(s[i]!=' ')
-                        s[k++]=s[i];
-        }
-        s[k]='\0';
-        printf("%s\n",s);
+int isprime(int x,int y){
+        if(x<2)
+                return 0;
+        if(y==1)
+                return 1;
+        if(x%y==0)
+                return 0;
+        return isprime(x,y-1);
 }
 int main(){
-        char str[100];
-        fgets(str,sizeof(str),stdin);
-        if(str[strlen(str)-1]=='\n')
-                str[strlen(str)-1]='\0';
-        void (*ptr)(char [])=&sorting;
-        for(int i=0;str[i]!='\0';i++){
-                for(int j=i+1;str[j]!='\0';j++){
-                        if(str[i] > str[j]){
-                                int temp=str[i];
-                                str[i]=str[j];
-                                str[j]=temp;
-                        }
-                }
-        }
-        printf("Sorted string:\n");
-        ptr(str);
+        int n;
+        printf("Enter the number:");
+        scanf("%d",&n);
+        if(isprime(n,n/2))
+                printf("%d is a prime number",n);
+        else
+                printf("%d is not a prime number",n);
 }
 ```
-## 4. Write a program in C to find the frequency of characters.
-```c
-##include<stdio.h>
-#include<string.h>
-#include<ctype.h>
-void count(char s1[],int freq[]){
-                for(int i=0;s1[i]!='\0';i++){
-                        if(freq[i]!=0)
-                              printf("%c repeates %d times\n",s1[i],freq[i]);
-        }
-}
-int main(){
-        char str[100];
-        int c;
-        void (*ptr)(char [],int [])=&count;
-        fgets(str,sizeof(str),stdin);
-        if(str[strlen(str)-1]=='\n')
-                str[strlen(str)-1]='\0';
-        for(int i=0;str[i]!='\0';i++){
-                str[i]=tolower(str[i]);
-        }
-        int f[strlen(str)];
-        for(int i=0;i<strlen(str);i++){
-                f[i]=-1;
-        }
-        for(int i=0;str[i]!='\0';i++){
-                c=1;
-                if(f[i]==-1){
-                for(int j=i+1;str[j]!='\0';j++){
-                        if(str[i]==str[j]){
-                                c++;
-                                f[j]=0;
-                        }
-                }
-                f[i]=c;
-                }
-        }
-        ptr(str,f);
-}
-```
-## 5.Write a program in C to extract a substring from a given string.
+## 4.Program to display and find out the sum of series.
 ```c
 #include<stdio.h>
-#include<string.h>
-void extractstring(char string[],int str,int len,int mlen){
-         char word[100];
-         int k=0;
-         if(str>0 && str<=mlen){
-                for(int i=str-1;i<str-1+len;i++){
-                        word[k++]=string[i];
-                }
-                word[k]='\0';
-                printf("%s",word);
-         }
-         else
-                 printf("Invalid");
-
+int sumofdigits(int n){
+    int s=0;
+    if(n==1){
+        printf("1");
+       return 1;
+    }
+    else{
+        s=sumofdigits(n-1);
+        printf(" + %d",n);
+        return s+n;
+    }
 }
 int main(){
-        char s1[100];
-        int start,sublength;
-        fgets(s1,sizeof(s1),stdin);
-        if(s1[strlen(s1)-1]=='\n')
-                s1[strlen(s1)-1]='\0';
-        int length=strlen(s1);
-        printf("\nEnter the starting position:");
-        scanf("%d",&start);
-        printf("\nEnter length of the substring:");
-        scanf("%d",&sublength);
-        void (*ptr)(char[],int ,int,int)=&extractstring;
-        ptr(s1,start,sublength,length);
+    int sum;
+    sum=sumofdigits(5);
+    printf("\nSum=%d",sum);
 }
 ```
-## 6. Write a program in C to find the number of times a given word 'the' appears in the given String.
+## 5.Program to convert a positive decimal number to Binary,Octal and Hexadecimal using recursion.
 ```c
 #include<stdio.h>
-#include<string.h>
-void count(char str[],char aword[],char word[]){
-        int count=0,k=0;
-        for(int i=0; ;i++){
-                if(str[i]!=' ' && str[i]!=',' && str[i]!='\0'){
-                        word[k++]=str[i];
-                }
-                else{
-                word[k]='\0';
-                if(strcmp(aword,word)==0){
-                        count++;
-                }
-                k=0;
-                }
-                if(str[i]=='\0')
-                        break;
-        }
-        printf("count=%d",count);
+void convert(int num,int base){
+    int rem=num%base;
+    if(num==0)
+      return;
+    convert(num/base,base);
+    if(rem<10)
+    printf("%d ",rem);
+    else
+    printf("%c ",rem-10+'A');
 }
 int main(){
-        char s1[100],aword[100],word[100];
-        fgets(s1,sizeof(s1),stdin);
-        if(s1[strlen(s1)-1]=='\n')
-                s1[strlen(s1)-1]='\0';
-        fgets(aword,sizeof(aword),stdin);
-        if(aword[strlen(aword)-1]=='\n')
-                aword[strlen(aword)-1]='\0';
-        void (*ptr)(char [],char [],char [])=&count;
-        ptr(s1,aword,word);
+    int n;
+    printf("Enter the number:");
+    scanf("%d",&n);
+    printf("Number in Binary form:");
+    convert(n,2);
+    printf("\n");
+    printf("Number in Octal form:");
+    convert(n,8);
+    printf("\n");
+    printf("Number in Hexadecimal form:");
+    convert(n,16);
+    printf("\n");
+}
+```
+## 6.Program to raise a floating point number to Positive number using recursion.
+```c
+#include<stdio.h>
+#include<math.h>
+float power(float a,int n){
+    if(n==0)
+       return 1;
+    else
+        return a*power(a,n-1);
+}
+int main(){
+    float a,p;
+    int n;
+    printf("Enter the a value:");
+    scanf("%f",&a);
+    printf("Enter the n value:");
+    scanf("%d",&n);
+    p=power(a,n);
+    printf("%f raised to power %d is %f",a,n,p);
+    
+}
+```
+## 7.The recursive function for printing the prime factors of a number.
+```c
+#include<stdio.h>
+void PFactors(int num){
+    int i=2;
+    if(num==1)
+      return;
+    while(num%i!=0)
+        i++;
+    printf("%d ",i);
+    return PFactors(num/i);
+}
+int main(){
+    int n;
+    printf("Enter the number:");
+    scanf("%d",&n);
+    PFactors(n);
+}
+```
+## 8.GCD of a number using Recursion.
+```c
+#include<stdio.h>
+int gcd(int x,int y){
+    if(y==0)
+    return x;
+    else 
+    return gcd(y,x%y);
+}
+int main(){
+    int a,b,c;
+    printf("Enter the a value:");
+    scanf("%d",&a);
+    printf("Enter the b value:");
+    scanf("%d",&b);
+    c=gcd(a,b);
+    printf("%d",c);
 }
 ```
