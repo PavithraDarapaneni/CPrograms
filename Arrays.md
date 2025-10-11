@@ -1173,3 +1173,29 @@ int main(){
         }
 }
 ```
+46.Write a C program to find the equilibrium element in an integer array.
+#include<stdio.h>
+int main(){
+        int n;
+        printf("Enter the size of the array:");
+        scanf("%d",&n);
+        int arr[n];
+        printf("Enter the elements in the array:");
+        for(int i=0;i<n;i++){
+                scanf("%d",&arr[i]);
+        }
+        int leftsum=0,rightsum=0;
+        for(int i=0;i<n;i++){
+                rightsum=0;
+                for(int j=i+1;j<n;j++){
+                        rightsum += arr[j];
+                }
+                if(leftsum==rightsum){
+                        printf("Equlibrium element: %d at index %d\n",arr[i],i);
+                        return 0m
+                tion
+
+                leftsum += arr[i];
+        }
+        printf("No equlibrium element found.\n");
+}
